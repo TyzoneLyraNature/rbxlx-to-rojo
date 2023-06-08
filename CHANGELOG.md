@@ -16,3 +16,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Changed file reading mechanism to be one that should be more optimized, increasing read times. You can further increase read times by switching to binary (.rbxl, .rbxm) files instead of using .rbxlx.
+
+#
