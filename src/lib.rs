@@ -273,7 +273,7 @@ impl<'a, I: InstructionReader + ?Sized> TreeIterator<'a, I> {
                         ignore_unknown_instances: true,
                         path: None,
                     },
-                })
+                });
 
                 (instructions, folder_path)
             } else {
