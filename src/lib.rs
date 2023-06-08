@@ -249,31 +249,31 @@ impl<'a, I: InstructionReader + ?Sized> TreeIterator<'a, I> {
                     instructions.push(Instruction::CreateFolder {
                         folder: folder_path.clone(),
                     });
-
-                    instructions.push(Instruction::AddToTree {
-                        name: child.name.clone(),
-                        partition: TreePartition {
-                            class_name: child.class.clone(),
-                            children: child
-                                .children()
-                                .iter()
-                                .filter(|id| has_scripts.get(id) == Some(&true))
-                                .map(|child_id| {
-                                    let child = self.tree.get_by_ref(*child_id).unwrap();
-                                    (
-                                        child.name.clone(),
-                                        Instruction::partition(
-                                            &child,
-                                            folder_path.join(&child.name),
-                                        ),
-                                    )
-                                })
-                                .collect(),
-                            ignore_unknown_instances: true,
-                            path: None,
-                        },
-                    })
                 }
+
+                instructions.push(Instruction::AddToTree {
+                    name: child.name.clone(),
+                    partition: TreePartition {
+                        class_name: child.class.clone(),
+                        children: child
+                            .children()
+                            .iter()
+                            .filter(|id| has_scripts.get(id) == Some(&true))
+                            .map(|child_id| {
+                                let child = self.tree.get_by_ref(*child_id).unwrap();
+                                (
+                                    child.name.clone(),
+                                    Instruction::partition(
+                                        &child,
+                                        folder_path.join(&child.name),
+                                    ),
+                                )
+                            })
+                            .collect(),
+                        ignore_unknown_instances: true,
+                        path: None,
+                    },
+                })
 
                 (instructions, folder_path)
             } else {
